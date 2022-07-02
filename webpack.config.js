@@ -36,9 +36,10 @@ module.exports = {
         // },        
         
         // For hosts (please adjust)
-        remotes: {
-            "accountMaster": "http://localhost:4201/remoteEntry.js",
-        },
+        // Commenting this out because we are loading remotes dynamically see app-routing.module.ts
+        // remotes: {
+        //     "accountMaster": "http://localhost:4201/remoteEntry.js",
+        // },
 
         shared: share({
           "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
