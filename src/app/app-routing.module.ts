@@ -1,6 +1,7 @@
 import { loadRemoteModule } from '@angular-architects/module-federation';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
@@ -9,7 +10,7 @@ const routes: Routes = [
     path: 'account-master', 
     loadChildren: () => loadRemoteModule({
       type: 'module',
-      remoteEntry: 'http://localhost:4201/remoteEntry.js',
+      remoteEntry: `${environment.mfe.accountMaster}/remoteEntry.js`,
       exposedModule: './Module'
     }).then(m => m.AccountMasterModule)
   },
