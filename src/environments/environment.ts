@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
   mfe: {
-    "accountMaster": "http://localhost:4201"
+    "accountMaster": "http://localhost:4201",
+    "arborio": "http://localhost:4202",
+    "carnaroli": "http://localhost:4203",
   }
 };
 

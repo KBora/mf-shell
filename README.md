@@ -99,3 +99,19 @@ We can change this so that the remote code is only loaded when the user requests
 * Remove the remote config from webpack.config.js
 * Now the remote code is only loaded when the user clicks on the link
 * The shell app will still work if it's remotes are down
+
+## Deploying to vercel
+* Upload repos to git
+* Link in Vercel
+* Create environment variables to hold vercel server names
+
+## Add second and third mfe2: one repo with 2 projects 
+* See mfe-remote2-arborio - this has 2 project which are deployed to two separate servers
+
+## Add third mfe3, one project with multiple modules
+
+
+## Create an Angular library and publish to npm
+Add basic data sharing service
+
+## Include Angular material and share it among shell, mfe1 and mfe2
