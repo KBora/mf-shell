@@ -15,7 +15,7 @@ const routes: Routes = [
     }).then(m => m.AccountMasterModule)
   },
   {
-    path: 'arborio',
+    path: 'mfe1',
     loadChildren: () => loadRemoteModule({
       type: 'module',
       remoteEntry: `${environment.mfe.arborio}/remoteEntry.js`,
@@ -23,7 +23,7 @@ const routes: Routes = [
     }).then(m => m.ArborioModule)
   },
   {
-    path: 'carnaroli',
+    path: 'mfe2',
     loadChildren: () => loadRemoteModule({
       type: 'module',
       remoteEntry: `${environment.mfe.carnaroli}/remoteEntry.js`,

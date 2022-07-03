@@ -115,3 +115,7 @@ We can change this so that the remote code is only loaded when the user requests
 Add basic data sharing service
 
 ## Include Angular material and share it among shell, mfe1 and mfe2
+
+## Issues
+Do not share the mfe's AppModule, as this creates multiple root scopes. Only share the feature modules
+If the module requires dependencies eg httpclient , you will need to share this from the shell's AppModule
