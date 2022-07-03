@@ -117,5 +117,8 @@ Add basic data sharing service
 ## Include Angular material and share it among shell, mfe1 and mfe2
 
 ## Issues
-Do not share the mfe's AppModule, as this creates multiple root scopes. Only share the feature modules
-If the module requires dependencies eg httpclient , you will need to share this from the shell's AppModule
+* Do not share the mfe's AppModule, as this creates multiple root scopes. Only share the feature modules
+* If the module requires dependencies eg httpclientmodule , you will need to share this from the shell's AppModule
+  * So in the remote, you will need to add HttpClientModule to the app.module. The remote will work if standlone
+  * But within the shell, this won't work. The HttpClientModule needs to be added to the app.module in the shell.
+  * Basically the shell's app module acts like all the remote's app modules.. so there will be co-ordination required between mfes.
