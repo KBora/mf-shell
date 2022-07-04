@@ -15,7 +15,8 @@ This POC uses the @angular-architect/module-federation plugin which makes it eas
     * Replace the default Angular builder with `ngx-build-plus` , see angular.json > projects.PROJECT-NAME.architect.build.builder
     * Add extraWebpackConfig and commonChunk false option, see angular.json - projects.PROJECT-NAME.architect.build.options.
     * Create webpack.config.js / webpack.prod.config.js. Note this is a partial webpack configuration that works alongside the default Angular CLI webpack configuration
-    * Update main.js to load from a bootstrap.ts file (not sure why this is necessary)
+    * Update main.js to load from a bootstrap.ts file
+      * This is required to bootstrap the app asychronously see https://github.com/angular-architects/module-federation-plugin/issues/93#issuecomment-954108535
     * TODO: Configure remote in webpack.config.js file - do this once the remote is setup (ie. you know the localhost port or the server the remote is hosted on)
 * Run the shell app (`npm run start`) on `http://locahost:4200` NB. There is a JavaScript error however `Uncaught SyntaxError: Cannot use 'import.meta' outside a module`
   
@@ -128,10 +129,16 @@ We can change this so that the remote code is only loaded when the user requests
 })
 ```
 
-## Include Angular material and share it among shell, mfe1 and mfe2
+## Install Angular material and share it among shell, mfe1 and mfe2
+* Install in shell
+  * `ng add @angular/material`
+  * Choose a theme, global Angular Material typography Y, include animations module Y
+* Error Could not find bootstrapApplication call in src/main.ts
+  * This is because of our MFE setup - main.ts has dynamic import of boostrap.ts
+  * To fix, replace main.ts with bootstrap.ts in angular.json AND replace the builder with the default angular builder (@angular-devkit/build-angular:browser), then install material, then revert the changes
 
 ## Issues
-* Do not share the mfe's AppModule, as this creates multiple root scopes. Only share the feature modules
+* Do not share the remote's AppModule, as this creates multiple root scopes. Only share the feature modules.. ie. only expose feature modules. the feature module can contain submodules.
 * If the module requires dependencies eg httpclientmodule , you will need to share this from the shell's AppModule
   * So in the remote, you will need to add HttpClientModule to the app.module. The remote will work if standlone
   * But within the shell, this won't work. The HttpClientModule needs to be added to the app.module in the shell.
