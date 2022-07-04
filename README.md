@@ -107,12 +107,26 @@ We can change this so that the remote code is only loaded when the user requests
 
 ## Add second and third mfe2: one repo with 2 projects 
 * See mfe-remote2-arborio - this has 2 project which are deployed to two separate servers
-
-## Add third mfe3, one project with multiple modules
-
+* Also has submodules
 
 ## Create an Angular library and publish to npm
-Add basic data sharing service
+* Add basic data sharing service with a counter kwoo-test-lib
+* Install in shell `npm i kwoo-test-lib`
+* Display counter in shell header
+* Install in remote 1
+* Display counter - it is a separate instance so counter values are not synchronised
+* How to share? Update webpack.config.js in both repos add to the shared config: eg
+```
+  shared: share({
+    "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
+    "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
+    "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
+    "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+    "kwoo-test-lib": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+    
+    ...sharedMappings.getDescriptors()
+})
+```
 
 ## Include Angular material and share it among shell, mfe1 and mfe2
 

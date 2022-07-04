@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataSharingService } from 'kwoo-test-lib';
 
 @Component({
   selector: 'app-header',
@@ -6,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  counter$ = this.dataSharingService.counter$;
+  constructor(private dataSharingService: DataSharingService) { }
 
   ngOnInit(): void {
   }
