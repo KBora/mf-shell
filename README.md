@@ -136,6 +136,12 @@ We can change this so that the remote code is only loaded when the user requests
 * Error Could not find bootstrapApplication call in src/main.ts
   * This is because of our MFE setup - main.ts has dynamic import of boostrap.ts
   * To fix, replace main.ts with bootstrap.ts in angular.json AND replace the builder with the default angular builder (@angular-devkit/build-angular:browser), then install material, then revert the changes
+  * Share material by adding it to the shell webconfig
+  ```
+    "@angular/material": { singleton: true, strictVersion: true, requiredVersion: 'auto', includeSecondaries: true },   
+  ```
+  * Import individual material modules to the feature module in the remote. You can skip adding to the shell app module if it is only used in the remote and not the shell
+  * *DO NOT IMPORT BROWSERANIMATIONSMODULE* in the remote.. it causes weird stuff and the shared service singleton breaks
 
 ## Issues
 * Do not share the remote's AppModule, as this creates multiple root scopes. Only share the feature modules.. ie. only expose feature modules. the feature module can contain submodules.
