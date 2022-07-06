@@ -111,7 +111,13 @@ We can change this so that the remote code is only loaded when the user requests
 * Also has submodules
 
 ## Create an Angular library and publish to npm
+* Create Angular library
+  * `ng generate library kwoo-test-lib`
 * Add basic data sharing service with a counter kwoo-test-lib
+* Upload library to npm
+  * `ng build kwoo-test-lib`
+  * `cd dist\kwoo-test-lib`
+  * `npm publish`
 * Install in shell `npm i kwoo-test-lib`
 * Display counter in shell header
 * Install in remote 1
@@ -149,3 +155,8 @@ We can change this so that the remote code is only loaded when the user requests
   * So in the remote, you will need to add HttpClientModule to the app.module. The remote will work if standlone
   * But within the shell, this won't work. The HttpClientModule needs to be added to the app.module in the shell.
   * Basically the shell's app module acts like all the remote's app modules.. so there will be co-ordination required between mfes.
+* Updates to shared libraries
+  * strictVersion: true config means that remotes and shell must use the same version of shared library otherwise this error appears:
+    `ERROR Error: Uncaught (in promise): Error: Unsatisfied version 0.2.1 from mfShell of shared singleton module kwoo-test-lib (required =0.0.1)
+Error: Unsatisfied version 0.2.1 from mfShell of shared singleton module kwoo-test-lib (required =0.0.1)`
+* Could not get remote interceptors to work.. possible because they need to be provide with HttpClient, and that is done in the shell
